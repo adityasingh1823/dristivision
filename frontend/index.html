@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <!-- <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" /> -->
+
     <!-- Favicon -->
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
 
@@ -22,18 +22,19 @@
     <title>DristiVision - AI Face Detector</title>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-    <!-- Smooth UI Styling -->
+    <!-- Base Styling -->
     <style>
       body {
         margin: 0;
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
         background: linear-gradient(135deg, #6a11cb, #2575fc);
-        overflow-x: hidden;
       }
 
-      /* Loader */
       #loader {
         position: fixed;
         width: 100%;
@@ -44,37 +45,26 @@
         justify-content: center;
         z-index: 9999;
         color: white;
-        font-size: 24px;
+        font-size: 22px;
         font-weight: bold;
-        letter-spacing: 2px;
-      }
-
-      /* Fade Animation */
-      .fade-out {
-        animation: fadeOut 1s forwards;
-      }
-
-      @keyframes fadeOut {
-        to {
-          opacity: 0;
-          visibility: hidden;
-        }
       }
     </style>
   </head>
 
   <body>
-    <!-- Loader Screen -->
+    <!-- Loader -->
     <div id="loader">🚀 Loading DristiVision...</div>
 
     <!-- React Root -->
     <div id="root"></div>
 
-    <!-- Script to remove loader -->
+    <!-- React Script (IMPORTANT - handled by build) -->
+
+    <!-- Remove loader AFTER React loads -->
     <script>
       window.addEventListener("load", function () {
         const loader = document.getElementById("loader");
-        loader.classList.add("fade-out");
+        if (loader) loader.style.display = "none";
       });
     </script>
   </body>
