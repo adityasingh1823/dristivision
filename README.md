@@ -4,20 +4,6 @@
   <img src="banner.png" alt="AI Face Detector Banner" width="1280">
 </p>
 
-[![GitHub stars](https://img.shields.io/github/stars/furkankoykiran/ai-face-detector?style=social)](https://github.com/furkankoykiran/ai-face-detector/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/furkankoykiran/ai-face-detector?style=social)](https://github.com/furkankoykiran/ai-face-detector/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/furkankoykiran/ai-face-detector)](https://github.com/furkankoykiran/ai-face-detector/issues)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
-[![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://python.org)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.1%2B-red)](https://pytorch.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.109%2B-green)](https://fastapi.tiangolo.com)
-
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/furkankoykiran/ai-face-detector/blob/main/training/train_colab.ipynb)
-[![Kaggle Model](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/models/furkankoykiran/ai-face-detector-mobilenetv2)
-
-**Detect AI-generated faces with ~95% accuracy using Transfer Learning and MobileNetV2**
-
 AI Face Detector is a lightweight, highly accurate API and web interface that detects whether a human face image is real or AI-generated (GAN, Stable Diffusion, Midjourney, etc.). Uses MobileNetV2 with Transfer Learning for fast, accurate inference.
 
 ## ✨ Features
@@ -131,22 +117,6 @@ poetry install
 - ✅ Pin memory & prefetch - faster data loading
 - ✅ No worker warnings - CPU-optimized configuration
 
-**Option B: Google Colab Training**
-
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/furkankoykiran/ai-face-detector)
-
-```python
-# In Colab:
-!git clone https://github.com/furkankoykiran/ai-face-detector.git
-%cd ai-face-detector
-!python training/train.py --data_path /content/data
-```
-
-See [Training Guide](docs/TRAINING.md) for detailed instructions.
-
-**Option C: Use Pre-trained Weights**
-
-Download pre-trained weights from [Releases](https://github.com/furkankoykiran/ai-face-detector/releases) (coming soon).
 
 ### 4. Run the API
 
@@ -192,32 +162,42 @@ See [API Documentation](docs/API.md) for more details.
 ## 📊 Project Structure
 
 ```
-AI-Face-Detector/
-├── app/
-│   ├── __init__.py          # Package initialization
-│   ├── main.py              # FastAPI application
-│   ├── model_loader.py      # Model loading utilities
-│   ├── config.py            # Configuration settings
-│   └── utils.py             # Image preprocessing & inference
-├── training/
-│   └── train.py             # Universal training script (Kaggle/Colab/Local)
-├── static/
-│   └── index.html           # Frontend UI with Tailwind CSS
-├── docs/
-│   ├── TRAINING.md          # Detailed training guide
-│   └── API.md               # API reference documentation
-├── .github/
-│   ├── workflows/           # CI/CD workflows
-│   └── ISSUE_TEMPLATE/      # Issue and PR templates
-├── model.pth                # Trained weights (download after training)
-├── requirements.txt         # Python dependencies
-├── .gitignore              # Git exclusions
-├── README.md               # This file
-├── CONTRIBUTING.md         # Contribution guidelines
-├── CODE_OF_CONDUCT.md      # Community guidelines
-├── SECURITY.md             # Security policy
-└── LICENSE                 # MIT License
-```
+dristivision/
+│
+├── backend/
+│   ├── main.py
+│   ├── model.py
+│   ├── auth.py
+│   ├── database.py
+│   ├── requirements.txt
+│   └── model.pth
+│
+frontend/
+├── index.html ✅
+├── package.json ✅
+├── vercel.json ✅
+├── vite.config.js ✅
+├── postcss.config.cjs ✅
+├── tailwind.config.js ✅
+│
+└── src/
+    ├── main.jsx ✅ (ENTRY POINT)
+    ├── App.jsx ✅ (ONLY ONE APP FILE)
+    ├── api.js ✅
+    ├── styles.css ✅
+    │
+    ├── components/
+    │   ├── Navbar.jsx ✅
+    │   ├── Upload.jsx ✅
+    │   ├── Result.jsx ✅
+    │   └── Loader.jsx ✅
+    │
+    └── pages/
+        ├── Dashboard.jsx ✅
+        ├── Login.jsx ✅
+        └── Signup.jsx ✅
+│
+└── README.md
 
 ## 🧪 Training
 
@@ -276,51 +256,6 @@ IMAGE_SIZE = 224
 MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
 ```
 
-## 🐳 Docker (Optional)
-
-```dockerfile
-FROM python:3.9-slim
-
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-
-COPY . .
-
-EXPOSE 8000
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
-```
-
-Build and run:
-```bash
-docker build -t ai-face-detector .
-docker run -p 8000:8000 ai-face-detector
-```
-
-## 🧪 Development
-
-### Running Tests
-
-```bash
-# Install test dependencies
-pip install pytest pytest-asyncio httpx
-
-# Run tests
-pytest tests/
-```
-
-### Code Quality
-
-```bash
-# Format code
-black app/
-
-# Lint
-ruff check app/
-
-# Type check
-mypy app/
-```
 
 ## 🤝 Contributing
 
@@ -332,27 +267,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **140k Real vs Fake Faces Dataset**: [xhlulu](https://kaggle.com/xhlulu)
-- **PyTorch Team**: For the amazing deep learning framework
-- **FastAPI**: For the modern, fast web framework
-- **Tailwind CSS**: For the utility-first CSS framework
-
-## 📚 Resources
-
-- [Training Guide](docs/TRAINING.md) - How to train the model
-- [API Documentation](docs/API.md) - API reference and examples
-- [140k Real vs Fake Faces Dataset](https://www.kaggle.com/datasets/xhlulu/140k-real-and-fake-faces)
-- [MobileNetV2 Paper](https://arxiv.org/abs/1801.04381)
-
-## 📧 Contact
-
-Furkan Köykıran - [@furkankoykiran](https://github.com/furkankoykiran)
 
 ---
 
