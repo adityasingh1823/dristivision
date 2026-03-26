@@ -1,13 +1,11 @@
 import axios from "axios";
 
-const API = axios.create({
-  baseURL: "https://dristivision-backend.onrender.com"
-});
+const API = "https://dristivision-backend.onrender.com";
 
-export const signup = (data) => API.post("/signup", data);
-export const login = (data) => API.post("/login", data);
+export const uploadImage = async (file) => {
+  const formData = new FormData();
+  formData.append("file", file);
 
-export const predict = (formData) =>
-  API.post("/predict", formData, {
-    headers: { "Content-Type": "multipart/form-data" }
-  });
+  const res = await axios.post(`${API}/predict`, formData);
+  return res.data;
+};
